@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Diskorse · Meet the people you need in five days</title>
+<meta name="description" content="Tell Diskorse what you're seeking and what you can offer. Do one small thing each day. On day five, swipe through real people who fit.">
+<meta property="og:title" content="Meet the people you need in five days">
+<meta property="og:description" content="The Diskorse 5 day journey: one small task a day, and a deck of real people who fit on day five.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:#FAFAF9;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+a{color:#5448EE;text-decoration:none}a:hover{color:#453BC3}
+.btn{transition:transform .18s cubic-bezier(.23,1,.32,1),filter .18s}
+.btn:hover{filter:brightness(.9);transform:translateY(-1px)}
+.btn:active{transform:scale(.97)}
+.ghost:hover{background:#F3F2FE}
+.navlink{color:#5A584F}.navlink:hover{color:#1A1A1A}
+.lift{transition:transform .22s cubic-bezier(.23,1,.32,1),box-shadow .22s}
+.lift:hover{transform:translateY(-3px);box-shadow:0 4px 10px rgba(20,16,60,.06),0 24px 48px -28px rgba(20,16,60,.45)}
+.card{transition:transform .32s cubic-bezier(.23,1,.32,1),opacity .32s}
+.card.dragging{transition:none}
+.dayfill{transition:transform .5s cubic-bezier(.23,1,.32,1);transform-origin:left center}
+.node{transition:background .25s,color .25s,border-color .25s,transform .18s}
+.node:hover{transform:scale(1.06)}
+.seg{transition:background .3s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.in1{animation:fadeUp .6s cubic-bezier(.23,1,.32,1) both}
+.in2{animation:fadeUp .6s .08s cubic-bezier(.23,1,.32,1) both}
+.in3{animation:fadeUp .6s .16s cubic-bezier(.23,1,.32,1) both}
+.in4{animation:fadeUp .7s .28s cubic-bezier(.23,1,.32,1) both}
+@keyframes hlA{0%,10%{background:#FFFFFF;color:#1A1A1A;border-color:#DAD6CA}14%,86%{background:#5448EE;color:#FFFFFF;border-color:#5448EE}94%,100%{background:#FFFFFF;color:#1A1A1A;border-color:#DAD6CA}}
+@keyframes hlB{0%,28%{background:#FFFFFF;color:#1A1A1A;border-color:#DAD6CA}32%,86%{background:#F0603C;color:#FFFFFF;border-color:#F0603C}94%,100%{background:#FFFFFF;color:#1A1A1A;border-color:#DAD6CA}}
+@keyframes drawA{0%,12%{stroke-dashoffset:300}24%,86%{stroke-dashoffset:0}94%,100%{stroke-dashoffset:300}}
+@keyframes drawB{0%,30%{stroke-dashoffset:300}42%,86%{stroke-dashoffset:0}94%,100%{stroke-dashoffset:300}}
+@keyframes pop{0%,46%{opacity:0;transform:translate(-50%,-50%) scale(.92)}52%,86%{opacity:1;transform:translate(-50%,-50%) scale(1)}94%,100%{opacity:0;transform:translate(-50%,-50%) scale(.96)}}
+.hlA{animation:hlA 8s infinite}
+.hlB{animation:hlB 8s infinite}
+.drawA{stroke-dasharray:300;animation:drawA 8s infinite}
+.drawB{stroke-dasharray:300;animation:drawB 8s infinite}
+.pop{animation:pop 8s infinite}
+@keyframes tagIn{0%,6%{opacity:0;transform:scale(.95)}14%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+.t1{animation:tagIn 6s infinite}.t2{animation:tagIn 6s .25s infinite}.t3{animation:tagIn 6s .5s infinite}.t4{animation:tagIn 6s .75s infinite}
+@keyframes dot{0%,5%{background:#FFFFFF;border-color:#DAD6CA;color:#8A887F}12%,90%{background:#5448EE;border-color:#5448EE;color:#FFFFFF}100%{background:#FFFFFF;border-color:#DAD6CA;color:#8A887F}}
+.d1{animation:dot 6s infinite}.d2{animation:dot 6s .5s infinite}.d3{animation:dot 6s 1s infinite}.d4{animation:dot 6s 1.5s infinite}
+@keyframes dot5{0%,30%{background:#FFFFFF;border-color:#DAD6CA;color:#8A887F}38%,90%{background:#F0603C;border-color:#F0603C;color:#FFFFFF}100%{background:#FFFFFF;border-color:#DAD6CA;color:#8A887F}}
+.d5{animation:dot5 6s infinite}
+@keyframes swipeDemo{0%,20%{transform:none;opacity:1}45%{transform:translateX(150px) rotate(16deg);opacity:0}46%,100%{transform:none;opacity:0}}
+@keyframes riseDemo{0%,25%{transform:translateY(12px) scale(.94)}45%,100%{transform:none}}
+.sw1{animation:swipeDemo 4s infinite cubic-bezier(.23,1,.32,1)}
+.sw2{animation:riseDemo 4s infinite cubic-bezier(.23,1,.32,1)}
+@keyframes nudge{0%,70%,100%{transform:none}78%{transform:translateX(18px) rotate(2deg)}86%{transform:translateX(-8px) rotate(-1deg)}}
+.nudge{animation:nudge 5s 1.5s infinite}
+@keyframes rv{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){.rv{animation:rv both cubic-bezier(.23,1,.32,1);animation-timeline:view();animation-range:entry 0% entry 55%}}}
+@media (prefers-reduced-motion:reduce){.hlA,.hlB,.drawA,.drawB,.pop,.t1,.t2,.t3,.t4,.d1,.d2,.d3,.d4,.d5,.sw1,.sw2,.nudge,.in1,.in2,.in3,.in4{animation:none}.card,.dayfill{transition:none}}
+</style>
+</head>
+<body>
+
+<div style="width: 100%; min-width: 1200px; background: #FAFAF9; color: #1A1A1A; font-family: Inter, system-ui, sans-serif">
+
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(250,250,249,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid #ECE9E1">
+<nav style="max-width: 1120px; margin: 0 auto; padding: 0 32px; height: 68px; display: flex; align-items: center; justify-content: space-between">
+<a href="#top" style="font-size: 23px; font-weight: 800; letter-spacing: -0.03em; color: #1A1A1A">diskorse</a>
+<div style="display: flex; align-items: center; gap: 32px; font-size: 15px; font-weight: 500">
+<a class="navlink" href="#how">How it works</a>
+<a class="navlink" href="#days">The five days</a>
+<a class="navlink" href="#deck">Day five</a>
+<a class="navlink" href="#price">Pricing</a>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<a class="navlink" href="#start" style="font-size: 15px; font-weight: 500">Log in</a>
+<a class="btn" href="#start" style="background: #5448EE; color: #FFFFFF; font-size: 15px; font-weight: 600; padding: 11px 18px; border-radius: 10px">Start day one</a>
+</div>
+</nav>
+</header>
+
+<section id="top" style="max-width: 1120px; margin: 0 auto; padding: 96px 32px 40px; display: flex; flex-direction: column; align-items: center; text-align: center">
+<div class="in1" style="display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border: 1px solid #E7E5FD; background: #FFFFFF; border-radius: 999px; font-size: 14px; font-weight: 500; color: #453BC3">
+<span style="background: #F3F2FE; color: #453BC3; font-weight: 700; padding: 3px 9px; border-radius: 999px; font-size: 12px">New</span>
+The Diskorse 5 day journey
+</div>
+<h1 class="in2" style="margin: 28px 0 0; font-size: 76px; line-height: 1.02; letter-spacing: -0.045em; font-weight: 800; max-width: 900px">Meet the people you need in <span style="color: #5448EE">five days.</span></h1>
+<p class="in3" style="margin: 26px 0 0; font-size: 21px; line-height: 1.55; color: #5A584F; max-width: 690px">Tell Diskorse what you're seeking and what you can offer. Do one small thing each day. On day five, swipe through real people who fit, then come back to see who swiped back.</p>
+<div class="in3" style="margin-top: 36px; display: flex; gap: 12px; align-items: center">
+<a class="btn" href="#start" style="background: #5448EE; color: #FFFFFF; font-size: 17px; font-weight: 600; padding: 16px 26px; border-radius: 12px; box-shadow: 0 10px 24px -12px rgba(84,72,238,0.7)">Start day one</a>
+<a class="btn ghost" href="#days" style="background: #FFFFFF; color: #1A1A1A; font-size: 17px; font-weight: 600; padding: 16px 24px; border-radius: 12px; border: 1px solid #DAD6CA">See the five days</a>
+</div>
+<p class="in3" style="margin: 18px 0 0; font-size: 14px; color: #5A584F">Free for all five days. One small task a day, at your own pace.</p>
+
+<div class="in4" style="position: relative; width: 1040px; height: 440px; margin-top: 64px; background: #F3F2FE; border: 1px solid #E7E5FD; border-radius: 28px; text-align: left; overflow: hidden">
+<div style="position: absolute; left: 50%; top: 24px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #E7E5FD; border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600; color: #453BC3">
+<span style="width: 8px; height: 8px; border-radius: 999px; background: #F0603C"></span>Day 5 of 5 · Fresh discovery
+</div>
+
+<div style="position: absolute; left: 60px; top: 74px; width: 340px; height: 300px; background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; box-shadow: 0 2px 4px rgba(26,26,26,0.04), 0 18px 40px -24px rgba(20,16,60,0.45)">
+<div style="position: absolute; left: 24px; top: 24px; display: flex; align-items: center; gap: 12px">
+<div style="width: 48px; height: 48px; border-radius: 999px; background: #5448EE; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px">You</div>
+<div><div style="font-weight: 700; font-size: 17px">You</div><div style="font-size: 13px; color: #5A584F; margin-top: 2px">Startup Owner · clinic booking idea</div></div>
+</div>
+<div style="position: absolute; left: 24px; top: 104px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A584F">Seeking</div>
+<div class="hlA" style="position: absolute; left: 24px; right: 24px; top: 126px; height: 40px; display: flex; align-items: center; padding: 0 14px; border: 1px solid #DAD6CA; border-radius: 10px; font-size: 15px; font-weight: 500; background: #FFFFFF">A technical cofounder</div>
+<div style="position: absolute; left: 24px; top: 194px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A584F">Offering</div>
+<div class="hlB" style="position: absolute; left: 24px; right: 24px; top: 216px; height: 40px; display: flex; align-items: center; padding: 0 14px; border: 1px solid #DAD6CA; border-radius: 10px; font-size: 15px; font-weight: 500; background: #FFFFFF">Equity and a real problem</div>
+</div>
+
+<svg width="240" height="440" viewBox="0 0 240 440" style="position: absolute; left: 400px; top: 0" aria-hidden="true">
+<path class="drawA" d="M0 220 C 120 220, 120 310, 240 310" fill="none" stroke="#5448EE" stroke-width="2.5" stroke-linecap="round"></path>
+<path class="drawB" d="M0 310 C 120 310, 120 220, 240 220" fill="none" stroke="#F0603C" stroke-width="2.5" stroke-linecap="round"></path>
+</svg>
+
+<div style="position: absolute; left: 640px; top: 74px; width: 340px; height: 300px; background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; box-shadow: 0 2px 4px rgba(26,26,26,0.04), 0 18px 40px -24px rgba(20,16,60,0.45)">
+<div style="position: absolute; left: 24px; top: 24px; display: flex; align-items: center; gap: 12px">
+<div style="width: 48px; height: 48px; border-radius: 999px; background: #1F8A72; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px">AN</div>
+<div><div style="font-weight: 700; font-size: 17px">Arjun Nair</div><div style="font-size: 13px; color: #5A584F; margin-top: 2px">Backend engineer · Bengaluru</div></div>
+</div>
+<div style="position: absolute; left: 24px; top: 104px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A584F">Seeking</div>
+<div class="hlB" style="position: absolute; left: 24px; right: 24px; top: 126px; height: 40px; display: flex; align-items: center; padding: 0 14px; border: 1px solid #DAD6CA; border-radius: 10px; font-size: 15px; font-weight: 500; background: #FFFFFF">An early idea worth building</div>
+<div style="position: absolute; left: 24px; top: 194px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A584F">Offering</div>
+<div class="hlA" style="position: absolute; left: 24px; right: 24px; top: 216px; height: 40px; display: flex; align-items: center; padding: 0 14px; border: 1px solid #DAD6CA; border-radius: 10px; font-size: 15px; font-weight: 500; background: #FFFFFF">Backend engineering, open to cofounding</div>
+</div>
+
+<div class="pop" style="position: absolute; left: 520px; top: 265px; transform: translate(-50%,-50%); background: #1A1A1A; color: #FFFFFF; font-size: 14px; font-weight: 700; padding: 10px 16px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 28px -12px rgba(0,0,0,0.5)">Matched both ways</div>
+
+<p style="position: absolute; left: 0; right: 0; bottom: 22px; margin: 0; text-align: center; font-size: 14px; color: #5A584F">What you seek meets what they offer, and what they seek meets what you offer.</p>
+</div>
+</section>
+
+<section style="max-width: 1120px; margin: 0 auto; padding: 48px 32px 24px">
+<p style="margin: 0 0 18px; text-align: center; font-size: 14px; font-weight: 600; color: #5A584F">One journey, shaped around who you are</p>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<template data-slot="strip"></template>
+</div>
+</section>
+
+<section class="rv" style="max-width: 820px; margin: 0 auto; padding: 120px 32px 110px; text-align: center">
+<h2 style="margin: 0; font-size: 52px; line-height: 1.08; letter-spacing: -0.035em; font-weight: 800">A profile with nothing behind it is noise.</h2>
+<p style="margin: 28px 0 0; font-size: 20px; line-height: 1.65; color: #5A584F">Most networking starts cold: a request from a stranger, an empty profile and a pitch. The 5 day journey changes the order. You show something real first, a Snippet, a Problem Solver, an article or a Collective, and only then does your card reach anyone's deck.</p>
+<p style="margin: 20px 0 0; font-size: 20px; line-height: 1.65; color: #1A1A1A; font-weight: 600">By day five, people see what you've done, not just what you want.</p>
+</section>
+
+<section id="how" style="background: #FFFFFF; border-top: 1px solid #ECE9E1; border-bottom: 1px solid #ECE9E1">
+<div style="max-width: 1120px; margin: 0 auto; padding: 110px 32px">
+<div class="rv" style="text-align: center">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5448EE">How it works</p>
+<h2 style="margin: 14px 0 0; font-size: 48px; letter-spacing: -0.035em; font-weight: 800">Three steps, spread over five days.</h2>
+</div>
+<div style="margin-top: 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+
+<div class="rv" style="display: flex; flex-direction: column; gap: 22px">
+<div style="height: 220px; border-radius: 20px; background: #FAFAF9; border: 1px solid #ECE9E1; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A584F">Seeking</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<span class="t1" style="padding: 8px 12px; border-radius: 999px; background: #F3F2FE; color: #453BC3; font-size: 14px; font-weight: 600">A technical cofounder</span>
+<span class="t2" style="padding: 8px 12px; border-radius: 999px; background: #F3F2FE; color: #453BC3; font-size: 14px; font-weight: 600">Two pilot clinics</span>
+</div>
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5A584F; margin-top: 8px">Offering</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<span class="t3" style="padding: 8px 12px; border-radius: 999px; background: #FDEAE4; color: #B23A1E; font-size: 14px; font-weight: 600">Equity</span>
+<span class="t4" style="padding: 8px 12px; border-radius: 999px; background: #FDEAE4; color: #B23A1E; font-size: 14px; font-weight: 600">A seat on the team</span>
+</div>
+</div>
+<div>
+<div style="font-size: 14px; font-weight: 700; color: #5448EE">01</div>
+<h3 style="margin: 8px 0 0; font-size: 22px; letter-spacing: -0.02em">Tell us both sides</h3>
+<p style="margin: 10px 0 0; font-size: 16px; line-height: 1.6; color: #5A584F">Pick your categories, then write what you're seeking and what you can offer, in your own words. Every feature reads from these two lines.</p>
+</div>
+</div>
+
+<div class="rv" style="display: flex; flex-direction: column; gap: 22px">
+<div style="height: 220px; border-radius: 20px; background: #FAFAF9; border: 1px solid #ECE9E1; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 22px">
+<div style="position: relative; display: flex; justify-content: space-between; align-items: center">
+<div style="position: absolute; left: 20px; right: 20px; top: 50%; height: 2px; background: #ECE9E1"></div>
+<span class="d1" style="position: relative; width: 40px; height: 40px; border-radius: 999px; border: 2px solid #DAD6CA; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #8A887F">1</span>
+<span class="d2" style="position: relative; width: 40px; height: 40px; border-radius: 999px; border: 2px solid #DAD6CA; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #8A887F">2</span>
+<span class="d3" style="position: relative; width: 40px; height: 40px; border-radius: 999px; border: 2px solid #DAD6CA; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #8A887F">3</span>
+<span class="d4" style="position: relative; width: 40px; height: 40px; border-radius: 999px; border: 2px solid #DAD6CA; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #8A887F">4</span>
+<span class="d5" style="position: relative; width: 40px; height: 40px; border-radius: 999px; border: 2px solid #DAD6CA; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #8A887F">5</span>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #5A584F">
+<span>Snippet</span><span>Problem Solver</span><span>Collective</span><span>Query</span><span>Deck</span>
+</div>
+</div>
+<div>
+<div style="font-size: 14px; font-weight: 700; color: #5448EE">02</div>
+<h3 style="margin: 8px 0 0; font-size: 22px; letter-spacing: -0.02em">Do one small thing a day</h3>
+<p style="margin: 10px 0 0; font-size: 16px; line-height: 1.6; color: #5A584F">A Snippet, a Problem Solver, a Collective, an article or a Brand Query. Each takes minutes and puts something real behind your card.</p>
+</div>
+</div>
+
+<div class="rv" style="display: flex; flex-direction: column; gap: 22px">
+<div style="position: relative; height: 220px; border-radius: 20px; background: #FAFAF9; border: 1px solid #ECE9E1; overflow: hidden">
+<div class="sw2" style="position: absolute; left: 50%; top: 32px; margin-left: -100px; width: 200px; height: 150px; background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 16px; padding: 16px; box-sizing: border-box">
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 34px; height: 34px; border-radius: 999px; background: #E6A23C"></span><span style="font-weight: 700; font-size: 14px">Leena Thomas</span></div>
+<div style="margin-top: 14px; height: 10px; width: 80%; border-radius: 6px; background: #ECE9E1"></div>
+<div style="margin-top: 8px; height: 10px; width: 60%; border-radius: 6px; background: #ECE9E1"></div>
+</div>
+<div class="sw1" style="position: absolute; left: 50%; top: 32px; margin-left: -100px; width: 200px; height: 150px; background: #FFFFFF; border: 1px solid #DAD6CA; border-radius: 16px; padding: 16px; box-sizing: border-box; box-shadow: 0 14px 30px -18px rgba(20,16,60,0.5)">
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 34px; height: 34px; border-radius: 999px; background: #1F8A72"></span><span style="font-weight: 700; font-size: 14px">Arjun Nair</span></div>
+<div style="margin-top: 14px; display: inline-block; padding: 5px 9px; border-radius: 999px; background: #F3F2FE; color: #453BC3; font-size: 12px; font-weight: 600">Offers what you seek</div>
+<div style="margin-top: 10px; height: 10px; width: 70%; border-radius: 6px; background: #ECE9E1"></div>
+</div>
+</div>
+<div>
+<div style="font-size: 14px; font-weight: 700; color: #5448EE">03</div>
+<h3 style="margin: 8px 0 0; font-size: 22px; letter-spacing: -0.02em">Swipe on day five</h3>
+<p style="margin: 10px 0 0; font-size: 16px; line-height: 1.6; color: #5A584F">Diskorse suggests people who fit both ways. Swipe through them, then come back to see who swiped back.</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="days" style="max-width: 1120px; margin: 0 auto; padding: 120px 32px 110px">
+<div class="rv" style="text-align: center">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5448EE">The five days</p>
+<h2 style="margin: 14px 0 0; font-size: 48px; letter-spacing: -0.035em; font-weight: 800">Your week, day by day.</h2>
+<p style="margin: 16px auto 0; max-width: 620px; font-size: 18px; line-height: 1.6; color: #5A584F">Pick who you are. Every journey starts with a Snippet and ends with the same deck, and the days in between fit what you actually need.</p>
+</div>
+
+<div id="daysApp"></div>
+</section>
+
+<section id="deck" style="background: #191540; color: #FFFFFF; overflow-x: clip">
+<div style="max-width: 1120px; margin: 0 auto; padding: 120px 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; align-items: center">
+<div class="rv">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #F7A58F">Day five</p>
+<h2 style="margin: 14px 0 0; font-size: 50px; line-height: 1.06; letter-spacing: -0.035em; font-weight: 800">Real people, not a score.</h2>
+<p style="margin: 22px 0 0; font-size: 18px; line-height: 1.65; color: #C9C5EC">On day five your deck opens. Diskorse suggests people who fit your tags and you swipe through them right there. The payoff is whoever is waiting when you come back.</p>
+<div style="margin-top: 34px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; gap: 14px"><span style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 999px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><div><div style="font-weight: 700; font-size: 16px">The full pool</div><div style="margin-top: 4px; font-size: 15px; line-height: 1.55; color: #C9C5EC">Everyone who fits, not only people who already swiped on you.</div></div></div>
+<div style="display: flex; gap: 14px"><span style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 999px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><div><div style="font-weight: 700; font-size: 16px">Mutual only</div><div style="margin-top: 4px; font-size: 15px; line-height: 1.55; color: #C9C5EC">A right swipe stays private. Chat opens only when both of you say yes, and nobody sits on a pending request.</div></div></div>
+<div style="display: flex; gap: 14px"><span style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 999px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><div><div style="font-weight: 700; font-size: 16px">A shortcut when they're open for it</div><div style="margin-top: 4px; font-size: 15px; line-height: 1.55; color: #C9C5EC">Swipe right on someone with a live Counsel plan, Brand Query or Problem Solver and you can act on it straight away.</div></div></div>
+</div>
+<p style="margin: 34px 0 0; font-size: 14px; color: #9D98CF">Try it. Drag the top card, or use the buttons. Example deck for a Startup Owner.</p>
+</div>
+
+<div id="deckApp" style="display: flex; flex-direction: column; align-items: center"></div>
+</div>
+</section>
+
+<section style="max-width: 1120px; margin: 0 auto; padding: 120px 32px 100px">
+<div class="rv" style="text-align: center">
+<h2 style="margin: 0; font-size: 48px; letter-spacing: -0.035em; font-weight: 800">Built so the first week actually works.</h2>
+<p style="margin: 16px auto 0; max-width: 600px; font-size: 18px; line-height: 1.6; color: #5A584F">A new network is empty for everyone at first. These are the parts that make sure yours isn't.</p>
+</div>
+<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+
+<div class="lift rv" style="background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; padding: 28px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #F3F2FE; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5448EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg></span>
+<h3 style="margin: 20px 0 0; font-size: 19px; letter-spacing: -0.01em">Matched both ways</h3>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5A584F">People who offer what you seek, and people who seek what you offer. Written in plain words, read by the matching, not forced into a dropdown.</p>
+</div>
+
+<div class="lift rv" style="background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; padding: 28px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E9E2FC; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6C3CE9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg></span>
+<h3 style="margin: 20px 0 0; font-size: 19px; letter-spacing: -0.01em">A guaranteed first reply</h3>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5A584F">A Startup Owner's first Problem Solver is free and gets a contributor from the Experts joining that week. Early on, a Diskorse team member fills in, labeled as staff.</p>
+</div>
+
+<div class="lift rv" style="background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; padding: 28px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #FFE0F6; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3137A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"></path></svg></span>
+<h3 style="margin: 20px 0 0; font-size: 19px; letter-spacing: -0.01em">Answer before you're verified</h3>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5A584F">Anyone can answer a Brand Query from day one, shown honestly as a peer response. The Verified Brand badge is something you apply for alongside, not a gate.</p>
+</div>
+
+<div class="lift rv" style="background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; padding: 28px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #E0F4F6; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#137C86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+<h3 style="margin: 20px 0 0; font-size: 19px; letter-spacing: -0.01em">Your pace, not the calendar's</h3>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5A584F">The next day opens after you finish the one before. Do it on a Monday or a Saturday, in five days or in ten.</p>
+</div>
+
+<div class="lift rv" style="background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; padding: 28px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #FBF2E2; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A9741C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></span>
+<h3 style="margin: 20px 0 0; font-size: 19px; letter-spacing: -0.01em">An honest head start</h3>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5A584F">New members get a visibility boost for their first five days, clearly labeled as new. No seeded vouches, no fake accounts.</p>
+</div>
+
+<div class="lift rv" style="background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 20px; padding: 28px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #FDEAE4; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+<h3 style="margin: 20px 0 0; font-size: 19px; letter-spacing: -0.01em">No pending requests</h3>
+<p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #5A584F">If you swipe right and they don't, they never find out. Low pressure on both sides, so a right swipe stays honest.</p>
+</div>
+
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-top: 1px solid #ECE9E1; border-bottom: 1px solid #ECE9E1">
+<div style="max-width: 1000px; margin: 0 auto; padding: 110px 32px">
+<div class="rv" style="text-align: center">
+<h2 style="margin: 0; font-size: 48px; letter-spacing: -0.035em; font-weight: 800">One week, not months of cold outreach.</h2>
+<p style="margin: 16px auto 0; max-width: 620px; font-size: 18px; line-height: 1.6; color: #5A584F">How the 5 day journey compares with the ways people usually try to meet the right people.</p>
+</div>
+<div class="rv" style="margin-top: 52px; border: 1px solid #ECE9E1; border-radius: 20px; overflow: hidden">
+<div style="display: grid; grid-template-columns: 2.2fr 1.2fr 1fr 1fr 1fr; background: #FAFAF9; border-bottom: 1px solid #ECE9E1; font-size: 14px; font-weight: 700">
+<div style="padding: 18px 22px"></div>
+<div style="padding: 18px 12px; text-align: center; color: #FFFFFF; background: #5448EE">Diskorse 5 day journey</div>
+<div style="padding: 18px 12px; text-align: center; color: #5A584F">LinkedIn outreach</div>
+<div style="padding: 18px 12px; text-align: center; color: #5A584F">Group chats and forums</div>
+<div style="padding: 18px 12px; text-align: center; color: #5A584F">Going it alone</div>
+</div>
+<template data-slot="compare"></template>
+</div>
+</div>
+</section>
+
+<section class="rv" style="max-width: 760px; margin: 0 auto; padding: 120px 32px 100px">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5448EE">A note from the team</p>
+<h2 style="margin: 14px 0 0; font-size: 40px; line-height: 1.12; letter-spacing: -0.03em; font-weight: 800">Why five days, and why the swipe waits.</h2>
+<div style="margin-top: 28px; display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.7; color: #3A3A45">
+<p style="margin: 0">We could have put the swipe deck on the first screen. We decided not to. On day one your profile is a name and two tags, and a card like that is easy to pass on.</p>
+<p style="margin: 0">So the first four days are for putting something real behind your card. A Snippet on day one, then, depending on who you are, a Problem Solver, a Collective, an article, a Brand Query or a Room. None of it takes long, and the pace is yours.</p>
+<p style="margin: 0">By day five your card shows what you've done, not just what you're looking for. That is when the deck opens, and that is when a right swipe actually means something.</p>
+</div>
+<div style="margin-top: 30px; display: flex; align-items: center; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #1A1A1A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px">d</span>
+<div><div style="font-weight: 700; font-size: 16px">The Diskorse team</div><div style="font-size: 14px; color: #5A584F">[FOUNDER NAMES, OPTIONAL]</div></div>
+</div>
+</section>
+
+<section id="price" style="max-width: 1120px; margin: 0 auto; padding: 40px 32px 120px">
+<div class="rv" style="text-align: center">
+<h2 style="margin: 0; font-size: 48px; letter-spacing: -0.035em; font-weight: 800">Your first five days are free.</h2>
+<p style="margin: 16px auto 0; max-width: 560px; font-size: 18px; line-height: 1.6; color: #5A584F">Every task in the journey costs nothing. After day five, you pay only for the features you choose to add.</p>
+</div>
+<div class="rv" style="margin: 52px auto 0; max-width: 520px; background: #FFFFFF; border: 1px solid #ECE9E1; border-radius: 24px; padding: 40px; box-shadow: 0 4px 10px rgba(20,16,60,0.05), 0 40px 80px -48px rgba(20,16,60,0.5)">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span style="font-size: 16px; font-weight: 700">The 5 day journey</span>
+<span style="font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; background: #F3F2FE; color: #453BC3">All five personas</span>
+</div>
+<div style="margin-top: 20px; display: flex; align-items: baseline; gap: 10px">
+<span style="font-size: 60px; font-weight: 800; letter-spacing: -0.04em">$0</span>
+<span style="font-size: 16px; color: #5A584F">for your first five days</span>
+</div>
+<a class="btn" href="#start" style="margin-top: 24px; display: block; text-align: center; background: #5448EE; color: #FFFFFF; font-size: 17px; font-weight: 600; padding: 16px; border-radius: 12px">Start day one</a>
+<div style="margin-top: 28px; display: flex; flex-direction: column; gap: 14px">
+<template data-slot="included"></template>
+</div>
+</div>
+</section>
+
+<section id="start" style="background: #F3F2FE; border-top: 1px solid #E7E5FD">
+<div class="rv" style="max-width: 860px; margin: 0 auto; padding: 120px 32px; text-align: center">
+<h2 style="margin: 0; font-size: 60px; line-height: 1.04; letter-spacing: -0.04em; font-weight: 800">Five days. One small step a day. Real people at the end.</h2>
+<p style="margin: 24px auto 0; max-width: 600px; font-size: 19px; line-height: 1.6; color: #5A584F">Stop starting with a cold message. Start with two lines about what you need and what you bring, and let the week do the rest.</p>
+<a class="btn" href="#top" style="margin-top: 36px; display: inline-block; background: #5448EE; color: #FFFFFF; font-size: 17px; font-weight: 600; padding: 16px 28px; border-radius: 12px; box-shadow: 0 10px 24px -12px rgba(84,72,238,0.7)">Start day one</a>
+</div>
+</section>
+
+<footer style="max-width: 1120px; margin: 0 auto; padding: 36px 32px 44px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: #5A584F">
+<span style="font-size: 19px; font-weight: 800; letter-spacing: -0.03em; color: #1A1A1A">diskorse</span>
+<span>© 2026 Diskorse</span>
+<div style="display: flex; gap: 24px"><a class="navlink" href="#top">Privacy policy</a><a class="navlink" href="#top">Terms</a><a class="navlink" href="#start">Open app</a></div>
+</footer>
+
+</div>
+
+<script>
+
+var PERSONAS = [
+  { id: 'startup', label: 'Startup Owner', meet: 'cofounders, mentors and investors' },
+  { id: 'business', label: 'Business Owner', meet: 'potential customers' },
+  { id: 'student', label: 'Student', meet: 'mentors and peers' },
+  { id: 'writer', label: 'Journalist or Writer', meet: 'readers and clients' },
+  { id: 'expert', label: 'Expert', meet: 'potential clients' }
+];
+
+var F = {
+  snippet: { feat: 'Snippet', color: '#5448EE', bg: '#F3F2FE', ink: '#453BC3' },
+  ps: { feat: 'Problem Solver', color: '#6C3CE9', bg: '#E9E2FC', ink: '#5328C4' },
+  collective: { feat: 'Collective', color: '#137C86', bg: '#E0F4F6', ink: '#0F6770' },
+  bq: { feat: 'Brand Query', color: '#A3137A', bg: '#FFE0F6', ink: '#A3137A' },
+  intent: { feat: 'Brand Intent', color: '#A3137A', bg: '#FFE0F6', ink: '#A3137A' },
+  room: { feat: 'Room', color: '#2A1B6B', bg: '#DFDDE9', ink: '#2A1B6B' },
+  debate: { feat: 'Debate', color: '#0033FF', bg: '#D9E0FF', ink: '#0029CC' },
+  vault: { feat: 'Article', color: '#1F8A72', bg: '#DDEDEA', ink: '#17705C' },
+  read: { feat: 'Read an expert', color: '#1F8A72', bg: '#DDEDEA', ink: '#17705C' },
+  counsel: { feat: 'Counsel draft', color: '#2A1B6B', bg: '#DFDDE9', ink: '#2A1B6B' },
+  deck: { feat: 'Your deck', color: '#E0502D', bg: '#FDEAE4', ink: '#B23A1E' }
+};
+
+function d(k, task, cta, why) { var f = F[k]; return { feat: f.feat, color: f.color, bg: f.bg, ink: f.ink, task: task, cta: cta, why: why }; }
+
+var JOURNEY = {
+  startup: [
+    d('snippet', 'Set your categories and write what you\'re seeking and what you can offer. Then post one Snippet introducing the problem you\'re solving.', 'Post your Snippet', 'It puts real content on your profile from the first hour, and it is honest about where you are: an idea, not a product yet.'),
+    d('ps', 'Post your first Problem Solver, free during your first week, and invite two or three people directly.', 'Post a Problem Solver', 'You test the idea before you build anything, and a contributor is guaranteed, so you never post into silence.'),
+    d('collective', 'Create a Collective around the problem you\'re solving, and invite a few people into it.', 'Create a Collective', 'People start gathering around your idea before there is a product to point them to.'),
+    d('bq', 'Post a Brand Query asking for a recommendation on a tool or service your idea needs.', 'Post a Brand Query', 'You are on the asking side for now, and every query sharpens what Diskorse knows you\'re looking for.'),
+    d('deck', 'Swipe through suggested cofounders, mentors and investors. Then come back to see who swiped back.', 'Open your deck', 'Real people who can help at this stage, and real matches waiting when you return.')
+  ],
+  business: [
+    d('snippet', 'Set your categories. Seeking: customers, partners, industry experts. Offering: your product or service. Then post one Snippet introducing it.', 'Post your Snippet', 'Your product is on the record from day one, and your two tags start working in the background.'),
+    d('intent', 'Tag your first post with Brand Intent so it carries the Brand badge as an offer.', 'Add Brand Intent', 'You are visible as a real business from day two, without waiting on anyone else to post first.'),
+    d('room', 'Set up your Room and brand page.', 'Set up your Room', 'A real storefront, because there is a real product behind it.'),
+    d('bq', 'Answer one live Brand Query in your area. If none fit, create a Collective about a topic close to your product.', 'Answer a query', 'People asking for a recommendation are the warmest leads there are, and there is always a way to finish the day.'),
+    d('deck', 'Swipe through suggested potential customers. Then come back to see who swiped back.', 'Open your deck', 'Potential customers who fit what you sell, and real matches waiting when you return.')
+  ],
+  student: [
+    d('snippet', 'Set your categories and what you\'re seeking: mentors, learning, connections. Offering is optional. Post one Snippet on something you\'re curious about.', 'Post your Snippet', 'No pressure to know what you offer yet. Curiosity is enough to start.'),
+    d('debate', 'Create a Debate Arena or a Structured Debate on a topic you care about.', 'Start a debate', 'You learn by arguing a position, and debates are the main way to earn vouches later.'),
+    d('read', 'Read an expert\'s article or Counsel plan in a field you\'re curious about.', 'Browse experts', 'You meet expert work before anyone asks you to pay for anything.'),
+    d('bq', 'Post a Brand Query asking the community for a recommendation.', 'Post a Brand Query', 'You get real answers, and Diskorse learns more about what you\'re looking for.'),
+    d('deck', 'Swipe through suggested mentors and peers. Then come back to see who swiped back.', 'Open your deck', 'People a step or two ahead of you, and peers on the same path.')
+  ],
+  writer: [
+    d('snippet', 'Set your categories. Offering: your writing and your beat. Seeking: readers and clients. Post one Snippet from your beat.', 'Post your Snippet', 'Your voice is on the page from the first hour.'),
+    d('vault', 'Publish your first new article on Diskorse.', 'Write an article', 'An original sample written here, not something recycled from elsewhere.'),
+    d('counsel', 'Draft a Counsel plan for your writing or consulting, and preview how a Monthly Magazine issue would look.', 'Draft a plan', 'You define what you sell and see how your work could be packaged, before you commit to either.'),
+    d('collective', 'Create a Collective around your beat, and invite a few readers or fellow writers into it.', 'Create a Collective', 'A small community forms around your beat early, so you are not writing in isolation.'),
+    d('deck', 'Swipe through suggested readers and clients. Then come back to see who swiped back.', 'Open your deck', 'Readers who follow your beat and clients who need your kind of writing.')
+  ],
+  expert: [
+    d('snippet', 'Set your categories. Offering: consultation and expertise. Seeking: visibility, credibility, clients. Post one Snippet with a clear point of view.', 'Post your Snippet', 'A point of view says more about an expert than a job title does.'),
+    d('vault', 'Publish or link an article or Bundle sample.', 'Add a sample', 'A free showcase that makes the case for booking you later.'),
+    d('vault', 'Publish or link a second article or Bundle sample.', 'Add a sample', 'More of your thinking on the record before you step into someone else\'s problem.'),
+    d('ps', 'Join a Startup Owner\'s Problem Solver as a contributor.', 'Join as contributor', 'A no commitment way to show what you know, and the reason every Startup Owner gets a first reply.'),
+    d('deck', 'Swipe through suggested potential clients. Then come back to see who swiped back.', 'Open your deck', 'People who need exactly what you know, and real matches waiting when you return.')
+  ]
+};
+
+var DECKS = {
+  seeking: [
+    { initials: 'AN', av: '#1F8A72', name: 'Arjun Nair', role: 'Backend engineer · Bengaluru', why: 'Offers backend engineering and is open to cofounding. You are seeking a technical cofounder.', seeking: 'An early idea worth building', offering: 'Backend engineering, open to a cofounder role', proof: 'Problem Solver contributor', vouches: '6 vouches', match: true, msg: 'Hi Arjun, I\'m building a booking tool for small clinics and looking for a technical cofounder. Your Snippet on scheduling systems is why I swiped. Open to a call this week?' },
+    { initials: 'LT', av: '#E0A63A', name: 'Leena Thomas', role: 'Operator turned angel · Kochi', why: 'Offers angel investment and pilot introductions. You are seeking early investors.', seeking: 'Founders before product, in healthcare', offering: 'Angel cheques and first pilot introductions', proof: 'Counsel plan live', vouches: '14 vouches', direct: { badge: 'Live Counsel plan', text: 'Leena has a live Counsel plan. You can request a session now, match or not.', cta: 'Request' } },
+    { initials: 'FQ', av: '#6C3CE9', name: 'Farhan Qureshi', role: 'Product designer · Pune', why: 'Offers design sprints for early products. You are seeking help with tools and services.', seeking: 'Portfolio projects with real users', offering: 'Design sprints for early products', proof: 'Running a Problem Solver', vouches: '3 vouches', direct: { badge: 'Active Problem Solver', text: 'Farhan is running a Problem Solver on onboarding flows. Join it as a contributor.', cta: 'Join' } },
+    { initials: 'RS', av: '#E64FA3', name: 'Ritika Shah', role: 'Clinic owner · Mysuru', why: 'Offers feedback from a real front desk. You are seeking pilot clinics.', seeking: 'A simpler way to handle bookings', offering: 'Feedback from a working clinic', proof: 'Brand Query asker', vouches: '2 vouches', match: true, msg: 'Hi Ritika, you asked about booking tools last week. I\'m building one for clinics your size and would love twenty minutes with your front desk.' }
+  ],
+  offering: [
+    { initials: 'KI', av: '#2FB8C4', name: 'Kavya Iyer', role: 'Final year CS student · Chennai', why: 'Seeks a seat on an early team. You are offering one.', seeking: 'A seat on an early team', offering: 'Full stack work, 20 hours a week', proof: 'Debate Arena win', vouches: '4 vouches', match: true, msg: 'Hi Kavya, I\'m offering a seat on a very early clinic booking team. Your debate on health data privacy stood out. Want to talk about what you\'d build first?' },
+    { initials: 'DM', av: '#0033FF', name: 'Dev Malhotra', role: 'Growth marketer · Delhi', why: 'Seeks equity in an early startup. You are offering equity.', seeking: 'Equity in a pre seed startup', offering: 'Launch playbooks and paid acquisition', proof: 'Brand Query open', vouches: '9 vouches', direct: { badge: 'Open Brand Query', text: 'Dev has an open Brand Query asking for a CRM recommendation. Answer it now.', cta: 'Answer' } },
+    { initials: 'SM', av: '#2A1B6B', name: 'Sana Mirza', role: 'Health journalist · Hyderabad', why: 'Seeks founders to interview on clinic tech. You are offering a real problem.', seeking: 'Founders building clinic tech', offering: 'A readership of clinic owners', proof: '2 articles', vouches: '11 vouches' }
+  ]
+};
+
+var COMPARE = [
+  { label: 'Matches what you seek with what they offer, and the other way round', v: ['yes', 'no', 'no', 'no'] },
+  { label: 'Something real on your profile before anyone sees it', v: ['yes', 'part', 'no', 'no'] },
+  { label: 'A match only when both people say yes', v: ['yes', 'no', 'no', 'no'] },
+  { label: 'A guaranteed first reply on your first Problem Solver', v: ['yes', 'no', 'no', 'no'] },
+  { label: 'Paced as one small task a day', v: ['yes', 'no', 'no', 'no'] },
+  { label: 'Ends with a deck of people who fit you', v: ['yes', 'part', 'no', 'no'] }
+];
+
+var INCLUDED = [
+  'All five days of the journey for your persona',
+  'Your first Problem Solver at $0, with a guaranteed contributor',
+  'Brand Intent and peer answers on Brand Queries',
+  'A labeled new member boost for your first five days',
+  'The day five deck, drawn from the full suggested pool',
+  'Chat with every mutual match'
+];
+
+
+
+var state = { persona: 'startup', day: 0, lens: 'seeking', idx: 0, gone: {}, match: null, direct: null };
+var CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"></path>';
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function slot(name) { return document.querySelector('[data-slot="' + name + '"]').parentElement; }
+
+function renderStrip() {
+  slot('strip').innerHTML = PERSONAS.map(function (p) {
+    return '<a class="lift" href="#days" data-persona="' + p.id + '" style="display:flex;flex-direction:column;gap:6px;padding:18px;background:#FFFFFF;border:1px solid #ECE9E1;border-radius:16px;color:#1A1A1A">' +
+      '<span style="font-size:15px;font-weight:700">' + esc(p.label) + '</span>' +
+      '<span style="font-size:13px;line-height:1.45;color:#5A584F">Day five: ' + esc(p.meet) + '</span></a>';
+  }).join('');
+}
+
+function renderDays() {
+  var list = JOURNEY[state.persona];
+  var cur = list[state.day];
+  var personaName = PERSONAS.filter(function (p) { return p.id === state.persona; })[0].label;
+  var pace = state.day === 0 ? 'Day 1 starts the moment you finish signing up.' : 'Day ' + (state.day + 1) + ' opens after you finish day ' + state.day + '. The pace is yours, not the calendar\'s.';
+
+  var tabs = PERSONAS.map(function (p) {
+    var on = p.id === state.persona;
+    return '<button type="button" data-persona="' + p.id + '" style="font:inherit;font-size:15px;font-weight:600;padding:11px 18px;border-radius:999px;border:1px solid;cursor:pointer;' +
+      (on ? 'background:#1A1A1A;color:#FFFFFF;border-color:#1A1A1A' : 'background:#FFFFFF;color:#1A1A1A;border-color:#DAD6CA') + '">' + esc(p.label) + '</button>';
+  }).join('');
+
+  var nodes = list.map(function (x, i) {
+    var reached = i <= state.day;
+    var ns = reached ? ('background:' + x.color + ';color:#FFFFFF;border-color:' + x.color + (i === state.day ? ';box-shadow:0 0 0 6px ' + x.bg : '')) : 'background:#FFFFFF;color:#5A584F;border-color:#DAD6CA';
+    var ls = i === state.day ? 'color:#1A1A1A;font-weight:700' : 'color:#5A584F;font-weight:500';
+    return '<button type="button" data-day="' + i + '" aria-label="Show day ' + (i + 1) + '" style="font:inherit;background:none;border:0;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:12px">' +
+      '<span class="node" style="width:50px;height:50px;border-radius:999px;border:2px solid;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;' + ns + '">' + (i + 1) + '</span>' +
+      '<span style="font-size:14px;' + ls + '">Day ' + (i + 1) + ' · ' + esc(x.feat) + '</span></button>';
+  }).join('');
+
+  var segs = [0, 1, 2, 3, 4].map(function (i) {
+    return '<span class="seg" style="height:6px;border-radius:6px;background:' + (i <= state.day ? cur.color : '#ECE9E1') + '"></span>';
+  }).join('');
+
+  document.getElementById('daysApp').innerHTML =
+    '<div style="margin-top:44px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap">' + tabs + '</div>' +
+    '<div style="margin-top:48px;position:relative;padding:0 40px">' +
+      '<div style="position:absolute;left:88px;right:88px;top:24px;height:3px;border-radius:3px;background:#ECE9E1"></div>' +
+      '<div class="dayfill" id="dayfill" style="position:absolute;left:88px;right:88px;top:24px;height:3px;border-radius:3px;background:#1A1A1A;transform:scaleX(' + (state.lastDay / 4) + ')"></div>' +
+      '<div style="position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))">' + nodes + '</div>' +
+    '</div>' +
+    '<div style="margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch">' +
+      '<div style="background:#F3F2FE;border:1px solid #E7E5FD;border-radius:24px;padding:40px;display:flex;align-items:center;justify-content:center">' +
+        '<div style="width:100%;max-width:400px;background:#FFFFFF;border-radius:18px;border:1px solid #ECE9E1;box-shadow:0 4px 10px rgba(20,16,60,0.06),0 30px 64px -34px rgba(20,16,60,0.55);padding:24px">' +
+          '<div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px;font-weight:700">Day ' + (state.day + 1) + ' of 5</span>' +
+          '<span style="font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:' + cur.bg + ';color:' + cur.ink + '">' + esc(cur.feat) + '</span></div>' +
+          '<div style="margin-top:12px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px">' + segs + '</div>' +
+          '<p style="margin:20px 0 0;font-size:18px;line-height:1.5;font-weight:600">' + esc(cur.task) + '</p>' +
+          '<div style="margin-top:22px;display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px;color:#5A584F">' + esc(personaName) + '</span>' +
+          '<span style="font-size:14px;font-weight:700;color:#FFFFFF;padding:10px 16px;border-radius:10px;background:' + cur.color + '">' + esc(cur.cta) + '</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div style="background:#FFFFFF;border:1px solid #ECE9E1;border-radius:24px;padding:40px;display:flex;flex-direction:column;justify-content:center">' +
+        '<p style="margin:0;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#5A584F">Why this day</p>' +
+        '<p style="margin:14px 0 0;font-size:24px;line-height:1.4;letter-spacing:-0.015em;font-weight:600">' + esc(cur.why) + '</p>' +
+        '<div style="margin-top:28px;padding-top:22px;border-top:1px solid #ECE9E1;display:flex;gap:12px;align-items:flex-start">' +
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5448EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>' +
+          '<p style="margin:0;font-size:15px;line-height:1.55;color:#5A584F">' + esc(pace) + '</p></div>' +
+        '<div style="margin-top:26px;display:flex;gap:10px">' +
+          '<button type="button" data-step="-1" class="ghost" style="font:inherit;font-size:14px;font-weight:600;padding:10px 16px;border-radius:10px;border:1px solid #DAD6CA;background:#FFFFFF;color:#1A1A1A;cursor:pointer">Previous day</button>' +
+          '<button type="button" data-step="1" class="btn" style="font:inherit;font-size:14px;font-weight:600;padding:10px 16px;border-radius:10px;border:1px solid #1A1A1A;background:#1A1A1A;color:#FFFFFF;cursor:pointer">Next day</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+  // animate the progress line from the previous position to the new one
+  var fill = document.getElementById('dayfill');
+  fill.getBoundingClientRect();
+  fill.style.transform = 'scaleX(' + (state.day / 4) + ')';
+  state.lastDay = state.day;
+}
+
+function cardStyle(i) {
+  var k = i - state.idx;
+  if (k < 0) {
+    var dir = state.gone[i] || 1;
+    return 'transform:translateX(' + (dir * 620) + 'px) rotate(' + (dir * 22) + 'deg);opacity:0;pointer-events:none;z-index:1';
+  }
+  if (k === 0) return 'transform:none;z-index:10;cursor:grab';
+  if (k <= 2) return 'transform:translateY(' + (k * 16) + 'px) scale(' + (1 - k * 0.05) + ');z-index:' + (9 - k) + ';opacity:' + (k === 1 ? 1 : 0.7);
+  return 'transform:translateY(32px) scale(.9);opacity:0;z-index:1';
+}
+
+function renderDeckShell() {
+  var lit = 'background:#FFFFFF;color:#191540';
+  var dim = 'background:rgba(255,255,255,0.08);color:#C9C5EC';
+  var list = DECKS[state.lens];
+  var cards = list.map(function (c, i) {
+    return '<div class="card" data-card="' + i + '" style="position:absolute;left:0;top:0;width:400px;height:440px;box-sizing:border-box;background:#FFFFFF;color:#1A1A1A;border-radius:22px;padding:26px;touch-action:pan-y;user-select:none;box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);' + cardStyle(i) + '">' +
+      '<div style="display:flex;align-items:center;gap:14px"><span style="width:56px;height:56px;border-radius:999px;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:19px;background:' + c.av + '">' + esc(c.initials) + '</span>' +
+      '<div style="flex-grow:1"><div style="font-weight:700;font-size:20px;letter-spacing:-0.01em">' + esc(c.name) + '</div><div style="margin-top:3px;font-size:14px;color:#5A584F">' + esc(c.role) + '</div></div></div>' +
+      (c.direct ? '<div style="margin-top:14px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:#FBF2E2;color:#8A5A12;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:999px;background:#E0A63A"></span>' + esc(c.direct.badge) + '</div>' : '') +
+      '<div style="margin-top:18px;padding:16px;border-radius:14px;background:#F3F2FE"><div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#453BC3">Why you\'re matched</div><div style="margin-top:8px;font-size:15px;line-height:1.5">' + esc(c.why) + '</div></div>' +
+      '<div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">' +
+        '<div><div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#5A584F">Seeking</div><div style="margin-top:4px;font-size:15px;font-weight:500">' + esc(c.seeking) + '</div></div>' +
+        '<div><div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#5A584F">Offering</div><div style="margin-top:4px;font-size:15px;font-weight:500">' + esc(c.offering) + '</div></div>' +
+      '</div>' +
+      '<div style="position:absolute;left:26px;right:26px;bottom:22px;display:flex;justify-content:space-between;font-size:13px;color:#5A584F"><span>Snippet · ' + esc(c.proof) + '</span><span>' + esc(c.vouches) + '</span></div>' +
+    '</div>';
+  }).join('');
+
+  document.getElementById('deckApp').innerHTML =
+    '<div style="display:flex;padding:4px;background:rgba(255,255,255,0.08);border-radius:999px;gap:4px">' +
+      '<button type="button" data-lens="seeking" style="font:inherit;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;border:0;cursor:pointer;' + (state.lens === 'seeking' ? lit : dim) + '">People offering what I seek</button>' +
+      '<button type="button" data-lens="offering" style="font:inherit;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;border:0;cursor:pointer;' + (state.lens === 'offering' ? lit : dim) + '">People seeking what I offer</button>' +
+    '</div>' +
+    '<div id="deckStage" style="position:relative;width:400px;height:470px;margin-top:28px">' + cards +
+      '<div id="deckDone" style="position:absolute;left:0;top:0;width:400px;height:440px;box-sizing:border-box;border:1.5px dashed rgba(255,255,255,0.3);border-radius:22px;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;gap:14px">' +
+        '<div style="font-size:22px;font-weight:700">That\'s today\'s deck.</div>' +
+        '<div style="font-size:15px;line-height:1.55;color:#C9C5EC">Come back tomorrow to see who swiped back. Matches and replies wait for you in Messages.</div>' +
+        '<button type="button" data-act="restart" class="btn" style="font:inherit;margin-top:8px;font-size:14px;font-weight:700;padding:11px 18px;border-radius:10px;border:0;background:#FFFFFF;color:#191540;cursor:pointer">Start over</button>' +
+      '</div>' +
+      '<div id="matchLayer"></div>' +
+    '</div>' +
+    '<div style="display:flex;gap:18px;margin-top:6px">' +
+      '<button type="button" data-act="pass" aria-label="Pass" class="btn" style="width:62px;height:62px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>' +
+      '<button type="button" data-act="like" aria-label="Swipe right" class="btn" style="width:62px;height:62px;border-radius:999px;border:0;background:#F0603C;color:#FFFFFF;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -12px rgba(240,96,60,0.8)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + CHECK + '</svg></button>' +
+    '</div>' +
+    '<div id="directLayer" style="height:84px;margin-top:18px;width:400px"></div>';
+  updateDeck();
+}
+
+function updateDeck() {
+  var list = DECKS[state.lens];
+  var els = document.querySelectorAll('#deckStage [data-card]');
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    var keep = 'position:absolute;left:0;top:0;width:400px;height:440px;box-sizing:border-box;background:#FFFFFF;color:#1A1A1A;border-radius:22px;padding:26px;touch-action:pan-y;user-select:none;box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);';
+    el.setAttribute('style', keep + cardStyle(i));
+    el.className = 'card' + (i === state.idx && state.idx === 0 && !state.match ? ' nudge' : '');
+  }
+  document.getElementById('deckDone').style.display = state.idx >= list.length ? 'flex' : 'none';
+
+  var m = state.match;
+  document.getElementById('matchLayer').innerHTML = !m ? '' :
+    '<div style="position:absolute;left:-20px;top:-10px;width:440px;height:480px;box-sizing:border-box;background:rgba(25,21,64,0.94);border-radius:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:36px;z-index:20">' +
+      '<div style="display:flex"><span style="width:64px;height:64px;border-radius:999px;background:#5448EE;border:3px solid #191540;display:flex;align-items:center;justify-content:center;font-weight:700">You</span><span style="margin-left:-14px;width:64px;height:64px;border-radius:999px;border:3px solid #191540;display:flex;align-items:center;justify-content:center;font-weight:700;background:' + m.av + '">' + esc(m.initials) + '</span></div>' +
+      '<div style="margin-top:20px;font-size:30px;font-weight:800;letter-spacing:-0.02em">It\'s a match</div>' +
+      '<div style="margin-top:8px;font-size:15px;line-height:1.55;color:#C9C5EC">You and ' + esc(m.name.split(' ')[0]) + ' both swiped right. Chat is open.</div>' +
+      '<div style="margin-top:20px;width:100%;text-align:left;background:rgba(255,255,255,0.08);border-radius:14px;padding:16px;box-sizing:border-box"><div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9D98CF">Suggested first message</div><div style="margin-top:6px;font-size:15px;line-height:1.5">' + esc(m.msg) + '</div></div>' +
+      '<button type="button" data-act="closeMatch" class="btn" style="font:inherit;margin-top:20px;font-size:15px;font-weight:700;padding:12px 20px;border-radius:10px;border:0;background:#FFFFFF;color:#191540;cursor:pointer">Keep swiping</button>' +
+    '</div>';
+
+  var d = state.direct;
+  document.getElementById('directLayer').innerHTML = (!d || m) ? '' :
+    '<div style="display:flex;align-items:center;gap:12px;background:#FFFFFF;color:#1A1A1A;border-radius:14px;padding:14px 16px;box-shadow:0 18px 40px -20px rgba(0,0,0,0.6)">' +
+      '<span style="flex-shrink:0;width:8px;height:8px;border-radius:999px;background:#E0A63A"></span>' +
+      '<span style="flex-grow:1;font-size:14px;line-height:1.45">' + esc(d.text) + '</span>' +
+      '<button type="button" data-act="closeDirect" style="font:inherit;flex-shrink:0;font-size:13px;font-weight:700;padding:9px 12px;border-radius:8px;border:0;background:#191540;color:#FFFFFF;cursor:pointer">' + esc(d.cta) + '</button>' +
+    '</div>';
+}
+
+function swipe(dir) {
+  var list = DECKS[state.lens];
+  var i = state.idx;
+  if (i >= list.length || state.match) return;
+  var card = list[i];
+  state.gone[i] = dir;
+  state.idx = i + 1;
+  state.direct = null;
+  updateDeck();
+  if (dir > 0) {
+    setTimeout(function () {
+      state.match = card.match ? card : null;
+      state.direct = card.direct || null;
+      updateDeck();
+    }, 340);
+  }
+}
+
+function renderCompare() {
+  slot('compare').innerHTML = COMPARE.map(function (r) {
+    var cells = r.v.map(function (v, j) {
+      var inner = v === 'yes' ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5448EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-label="Yes">' + CHECK + '</svg>'
+        : v === 'part' ? '<span style="font-size:13px;font-weight:600;color:#5A584F">Partly</span>'
+        : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B5B2A8" stroke-width="2.2" stroke-linecap="round" aria-label="No"><path d="M7 7l10 10M17 7L7 17"></path></svg>';
+      return '<div style="padding:18px 12px;display:flex;justify-content:center;align-items:center;' + (j === 0 ? 'background:#F3F2FE' : '') + '">' + inner + '</div>';
+    }).join('');
+    return '<div style="display:grid;grid-template-columns:2.2fr 1.2fr 1fr 1fr 1fr;border-bottom:1px solid #ECE9E1;align-items:center"><div style="padding:18px 22px;font-size:15px;font-weight:500;line-height:1.45">' + esc(r.label) + '</div>' + cells + '</div>';
+  }).join('');
+}
+
+function renderIncluded() {
+  slot('included').innerHTML = INCLUDED.map(function (t) {
+    return '<div style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5448EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:2px">' + CHECK + '</svg><span>' + esc(t) + '</span></div>';
+  }).join('');
+}
+
+// events
+document.addEventListener('click', function (e) {
+  var t = e.target.closest('[data-persona],[data-day],[data-step],[data-lens],[data-act]');
+  if (!t) return;
+  if (t.dataset.persona) { state.persona = t.dataset.persona; state.day = 0; renderDays(); return; }
+  if (t.dataset.day) { state.day = +t.dataset.day; renderDays(); return; }
+  if (t.dataset.step) { state.day = Math.max(0, Math.min(4, state.day + +t.dataset.step)); renderDays(); return; }
+  if (t.dataset.lens) { state.lens = t.dataset.lens; state.idx = 0; state.gone = {}; state.match = null; state.direct = null; renderDeckShell(); return; }
+  var a = t.dataset.act;
+  if (a === 'pass') swipe(-1);
+  else if (a === 'like') swipe(1);
+  else if (a === 'restart') { state.idx = 0; state.gone = {}; state.match = null; state.direct = null; updateDeck(); }
+  else if (a === 'closeMatch') { state.match = null; updateDeck(); }
+  else if (a === 'closeDirect') { state.direct = null; updateDeck(); }
+});
+
+// drag to swipe on the top card
+var drag = null;
+document.addEventListener('pointerdown', function (e) {
+  var el = e.target.closest('#deckStage [data-card]');
+  if (!el || +el.dataset.card !== state.idx || state.match) return;
+  drag = { el: el, x: e.clientX, dx: 0 };
+  el.classList.add('dragging');
+  el.classList.remove('nudge');
+  if (el.setPointerCapture) el.setPointerCapture(e.pointerId);
+});
+document.addEventListener('pointermove', function (e) {
+  if (!drag) return;
+  drag.dx = e.clientX - drag.x;
+  drag.el.style.transform = 'translateX(' + drag.dx + 'px) rotate(' + (drag.dx / 18) + 'deg)';
+});
+function endDrag() {
+  if (!drag) return;
+  var dx = drag.dx;
+  drag.el.classList.remove('dragging');
+  drag = null;
+  if (Math.abs(dx) > 110) swipe(dx > 0 ? 1 : -1);
+  else updateDeck();
+}
+document.addEventListener('pointerup', endDrag);
+document.addEventListener('pointercancel', endDrag);
+
+state.lastDay = 0;
+renderStrip();
+renderDays();
+renderDeckShell();
+renderCompare();
+renderIncluded();
+
+</script>
+</body>
+</html>
